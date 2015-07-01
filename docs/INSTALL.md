@@ -35,9 +35,11 @@ dpkg -i elasticsearch-1.3.1.deb
 ```
 
 3. Install LESS compiler
+
 ``` npm install -g less ```
 
 4. (For production environment) Install uglifyjs / uglifycss for static builds making
+
 ``` npm install uglify uglifycss ```
 
 5. Create new database and user for application
@@ -49,6 +51,7 @@ sudo -u postgres -i psql postgres -c "GRANT ALL privileges ON DATABASE rdr TO rd
 ```
 
 6. Install application pip requirements.
+
 ```
 pip install -r ./requirements.txt
 ```
@@ -57,6 +60,7 @@ pip install -r ./requirements.txt
 
 Default system config is placed in *rdr/application/configs/defaults.py*.
 You can create your own application config and overwrite some configs settings, just copy *example.py* to *app.py* for it, or extend ProductionConfig / DevelopmentConfig for your needs.
+
 ```
 cp ./rdr/applicaiton/configs/example.py ./rdr/application/configs/app.py
 ```

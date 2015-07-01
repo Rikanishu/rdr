@@ -130,7 +130,7 @@ class ProductionConfig(object):
     SIGNUP_ENABLED = True
 
     """
-    Supported application
+    Supported languages
     """
     LANGUAGES = {
         'ru': 'Русский',
@@ -140,7 +140,7 @@ class ProductionConfig(object):
 
 class DevelopmentConfig(ProductionConfig):
     """
-    An example of standard devopment config.
+    An example of standard development config.
     It bases on production config and overwrite some settings.
     """
 

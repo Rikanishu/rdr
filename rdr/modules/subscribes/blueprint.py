@@ -122,8 +122,6 @@ def new_subscribe():
     db.session.add(sub)
     db.session.commit()
 
-    print sub
-
     from rdr.modules.feeds.articles.unread import TotalUnreadArticlesSet
     total_unread_set = TotalUnreadArticlesSet(session_user.user)
     sub_dict = prepare_subscribe(sub)

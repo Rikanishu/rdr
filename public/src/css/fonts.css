@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src:  url('../fonts/FontAwesome/fontawesome-webfont.woff?v=4.2.0') format('woff'),
+        url('../fonts/FontAwesome/fontawesome-webfont.ttf?v=4.2.0') format('truetype'),
+        url('../fonts/FontAwesome/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src:  url('../fonts/PTSerif/PTF55F-webfont.woff') format('woff'),
+        url('../fonts/PTSerif/PTF55F-webfont.ttf') format('truetype'),
+        url('../fonts/PTSerif/PTF55F-webfont.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src:  url('../fonts/PTSans/PTS55F-webfont.woff') format('woff'),
+        url('../fonts/PTSans/PTS55F-webfont.ttf') format('truetype'),
+        url('../fonts/PTSans/PTS55F-webfont.svg#pt_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src:  url('../fonts/PTSansItalic/PTS56F-webfont.woff') format('woff'),
+        url('../fonts/PTSansItalic/PTS56F-webfont.ttf') format('truetype'),
+        url('../fonts/PTSansItalic/PTS56F-webfont.svg#pt_sansitalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src:  url('../fonts/PTSansBold/PTS75F-webfont.woff') format('woff'),
+        url('../fonts/PTSansBold/PTS75F-webfont.ttf') format('truetype'),
+        url('../fonts/PTSansBold/PTS75F-webfont.svg#pt_sansbold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Sans Narrow';
+  src:  url('../fonts/PTSansNarrow/PTN57F-webfont.woff') format('woff'),
+        url('../fonts/PTSansNarrow/PTN57F-webfont.ttf') format('truetype'),
+        url('../fonts/PTSansNarrow/PTN57F-webfont.svg#pt_sans_narrowregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Sans Narrow';
+  src:  url('../fonts/PTSansNarrowBold/PTN77F-webfont.woff') format('woff'),
+        url('../fonts/PTSansNarrowBold/PTN77F-webfont.ttf') format('truetype'),
+        url('../fonts/PTSansNarrowBold/PTN77F-webfont.svg#pt_sans_narrowbold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

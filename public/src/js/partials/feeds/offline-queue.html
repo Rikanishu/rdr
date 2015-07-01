@@ -1,0 +1,62 @@
+<div class="offline-read-queue" rdr-loading="isLoading">
+    <div class="left-block">
+
+    </div>
+    <div class="middle-block">
+        <div class="article" ng-repeat="article in articles" ng-if="articles && articles.length">
+            <div class="header">
+                <div class="title">
+                    <a href="{{::article.link}}" target="_blank">{{::article.title|cut:220}}</a>
+                </div>
+                <div class="close-button-icon">
+                    <a href="#" class="close-button" ng-click="removeFromQueue(article, $event)"><span class="fa fa-times-circle"></span></a>
+                </div>
+            </div>
+            <div class="additional-info">
+                       <span class="feed-icon">
+                            <img ng-src="{{::article.feed.smallIconSrc}}" ng-if="::article.feed.smallIconSrc">
+                        </span>
+                <span class="feed-name"> <a ui-sref="home.showFeed({feedId: article.feed.id})" href="#" class="subscribe-link"> {{::article.feed.title|cut:30}}</a> </span>
+                <span class="date"> | {{::article.elapsedDate}}</span>
+                <span class="author" ng-if="::article.author"> | {{::article.author}} </span>
+            </div>
+            <div class="text">
+                <div class="article-image" rdr-bg-img="{{::article.imageUrl}}" ng-show="::article.imageUrl"></div>
+                <div class="html" ng-bind-html="::(article.fullText || article.text)|cut:2600|trust"></div>
+            </div>
+        </div>
+        <div class="empty-articles" ng-show="!articles || !articles.length">
+            <div class="placeholder">
+                <div class="image">
+                    <img src="/static/img/feeds/paper-128x128.png" />
+                </div>
+                <div class="text">
+                    {{'Add articles to queue to save it for offline reading.'|lang}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-block">
+        <div class="save-form" rdr-loading="isGenerationProcess" rdr-loading-title="{{'Generation process...'|lang}}" rdr-loading-message="{{'Please wait while file is generated.'|lang}}" ng-if="articles && articles.length">
+            <h4><span class="fa fa-cloud-download"></span> {{"Offline read queue"|lang}}</h4>
+            <p>{{"Save articles to read offline"|lang}}</p>
+            <div class="form-group">
+                <label class="control-label" for="save-type">{{"Save to"|lang}}</label>
+                <select class="form-control" name="save-type" id="save-type" ng-model="saveModel.saveType">
+                    <option value="download">{{"Download"|lang}}</option>
+                    <option value="dropbox">{{"Save to Dropbox"|lang}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="file-format">{{"File format"|lang}}</label>
+                <select class="form-control" name="file-format" id="file-format" ng-model="saveModel.fileFormat">
+                    <option value="pdf">{{"PDF"|lang}}</option>
+                </select>
+            </div>
+            <div class="form-group actions">
+                <button class="btn btn-primary" ng-click="saveAction($event)">{{"Save"|lang}}</button>
+                <button class="btn btn-default" ng-click="clearQueue($event)">{{"Clear queue"|lang}}</button>
+            </div>
+        </div>
+    </div>
+</div>

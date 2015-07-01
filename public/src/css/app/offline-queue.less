@@ -1,0 +1,120 @@
+@import "common.less";
+
+.offline-read-queue {
+  .make-row();
+  height: 100%;
+
+  .left-block {
+    .make-xs-column(0);
+    .make-sm-column(0);
+    .make-md-column(2);
+    .make-lg-column(2);
+    .hide-xs();
+    .hide-sm();
+    height: 100%;
+    box-shadow: 0px 4px 20px 0px #000000;
+    z-index: 20;
+  }
+
+  .middle-block {
+    .make-xs-column(8);
+    .make-sm-column(8);
+    .make-md-column(7);
+    .make-lg-column(7);
+    /*background: #cccccc;*/
+    background: url('/static/img/textures/stardust.png') repeat;
+    height: 100%;
+    overflow: auto;
+
+    > .empty-articles {
+      margin-top: 60px;
+      margin-left: 8%;
+      margin-right: 8%;
+      padding: 20px;
+      box-shadow: 4px 4px 20px 0px #000000;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    > .article {
+      overflow: hidden;
+      background: #ffffff;
+      margin: 3% 8%;
+      padding: 10px;
+      box-shadow: 4px 4px 20px 0px #000000;
+
+      .header {
+        .clearfix();
+        position: relative;
+
+        .title {
+          font-weight: bold;
+          font-size: 16px;
+          padding-right: 20px;
+
+          > a {
+            color: inherit;
+          }
+
+        }
+
+        .close-button-icon {
+          color: inherit;
+          text-align: right;
+          position: absolute;
+          right: 5px;
+          top: 2px;
+
+          > a {
+            color: #000000;
+          }
+
+        }
+
+      }
+
+      .additional-info {
+        margin-bottom: 20px;
+
+        > .feed-name > a {
+          display: inline-block;
+          vertical-align: middle;
+          color: inherit;
+        }
+
+        > .date {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+      }
+
+      .article-image {
+        width: 180px;
+        height: 180px;
+        background: no-repeat center;
+        background-size: 140%;
+        float: left;
+        display: inline-block;
+        margin-right: 20px;
+        margin-bottom: 10px;
+      }
+    }
+
+  }
+
+  .right-block {
+    .make-xs-column(4);
+    .make-sm-column(4);
+    .make-md-column(3);
+    .make-lg-column(3);
+
+    .save-form {
+      margin-top: 50px;
+      padding: 10px;
+
+    }
+
+  }
+
+}

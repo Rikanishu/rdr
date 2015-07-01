@@ -1,0 +1,251 @@
+<div class="feeds-body" rdr-loading="showLoading">
+    <div class="left-side-block">
+        <div class="fixed-side-block expanded" ng-controller="home.SubscribesCtrl">
+            <div class="options">
+                <p>
+                    <a href="#/feeds/add" class="icon-link" ui-sref="home.addFeed"><span class="fa fa-plus-circle"></span>{{"Add new feed"|lang}}</a>
+                </p>
+                <!--
+                <p>
+                    <a href="#/feeds/create-package" class="icon-link" ui-sref="home.createPackage"><span class="fa fa-archive"></span>{{"Subscribe packages"|lang}}</a>
+                </p>
+                -->
+                <p>
+                    <a href="#/feeds/offline-queue" class="icon-link" ui-sref="home.offlineQueue"><span class="fa fa-cloud-download"></span>{{"Offline read queue"|lang}}</a>
+                </p>
+                <p>
+                    <a href="#/feeds/stats" class="icon-link" ui-sref="home.stats"><span class="fa fa-pie-chart"></span>{{"Stats"|lang}}</a>
+                </p>
+                <p>
+                    <a href="/admin" class="icon-link" ng-if="::user.isAdmin"><span class="fa fa-wrench"></span>{{"Admin interface"|lang}}</a>
+                </p>
+            </div>
+            <hr/>
+            <div  class="subscribe-container">
+                <div class="all-items">
+                    <div>
+                        <div class="special-item">
+                            <div class="unread-news subscribe" ng-click="onAllNewsSelect()">
+                                <span class="icon fa fa-newspaper-o"></span>
+                                <span class="item-title"> {{"Unread news"|lang}}  <span ng-show="totalUnreadCount" class="badge unread-count">{{ totalUnreadCount }}</span> </span>
+                            </div>
+                            <div class="favorite-articles subscribe" ng-click="onFavoritesSelect()">
+                                <span class="icon fa fa-heart"></span>
+                                <span class="item-title"> {{"Favorites"|lang}}  </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div ng-drop="true" class="special-item subscribe item-title" ng-drop-success="onDropInNewFolder($data, $event)" ng-click="onNewFolderClick()">
+                            <span class="icon fa fa-folder-o"></span>
+                            <span class="item-title"> {{"New folder"|lang}} </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subscribes">
+                    <div class="folder-subscribes-container">
+                        <div class="folder-subscribe" ng-repeat="item in subscribesByType.folders">
+                            <div class="subscribe folder new-folder" ng-if="item._isNew">
+                                <div class="subscribe folder">
+                                    <form name="newFolder" ng-submit="onNewFolderCreate(item, newFolderModel)">
+                                        <span class="icon fa fa-times cancel-icon"></span>  <input type="text" ng-model="newFolderModel.name" rdr-subscriber-new-folder="item" />
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="existed-folder" ng-if="!item._isNew">
+                                <div ng-drop="true" class="subscribe folder" ng-drop-success="onDropInFolder(item, $data, $event)" ng-click="onSubscribeFolderSelect(item)">
+                                    <span class="icon fa {{!item._isSelected ? 'fa-folder' : 'fa-folder-open'}}"></span>  {{::item.name}}
+                                </div>
+                                <div class="child-items" ng-if="item._isSelected">
+                                    <div class="child-item subscribe feed"
+                                         ng-class="{'selected-label': childItem._isSelected}"
+                                         ng-repeat="childItem in item.feeds"
+                                         ng-click="onSubscribeSelect(childItem)">
+                                        <span>
+                                            <span ng-if="::childItem.iconSrc">
+                                                <span class="child-subscribe-icon" style="background-image: url({{::childItem.iconSrc}})">
+                                                </span>
+                                            </span>
+                                            <span ng-if="::!childItem.iconSrc">
+                                               <span class="def-icon fa fa-file"></span>
+                                            </span>
+                                                    {{::childItem.name}}
+                                        </span>
+                                        <span ng-show="childItem.unreadCount" class="badge unread-count">{{ childItem.unreadCount }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="root-subscribes-container drag-subscribe" ng-drop="true" ng-drop-success="onDropInRoot($data, $event)">
+                        <div class="root-subscribe" ng-repeat="item in subscribesByType.subscriptions">
+                            <div class="subscribe feed" ng-class="{'selected-label': item._isSelected}"  ng-click="onSubscribeSelect(item)">
+                                <span>
+                                    <span ng-if="::item.iconSrc">
+                                        <span class="child-subscribe-icon" rdr-bg-img="{{::item.iconSrc}}">
+                                        </span>
+                                    </span>
+                                    <span ng-if="::!item.iconSrc">
+                                       <span class="def-icon fa fa-file"></span>
+                                    </span>
+                                        {{::item.name}}
+                                </span>
+                                <span ng-show="item.unreadCount" class="badge unread-count">{{ item.unreadCount }}</span>
+                            </div>
+                        </div>
+                        <div class="drop-zone text-center">
+                            <div>
+                                <span class="fa fa-plus-circle fa-2x"></span>
+                            </div>
+                            {{"Drop package for new subscribe"|lang}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>
+                <a href="#/feeds/settings" class="icon-link" ui-sref="home.manageSubscribes"><span class="fa fa-book"></span>{{"Manage subscribes"|lang}}</a>
+            </p>
+        </div>
+    </div>
+    <div class="feeds-content">
+           <div class="current-ui-view" ui-view>
+               <div class="row feeds-home-container" ng-controller="home.DashboardCtrl">
+                   <div class="left-col">
+                       <div class="welcome latest-news" ng-if="isDashboardLoaded">
+                           <div class="header">
+                               <div class="image" ng-if="::user.imageSrc">
+                                   <a href="#/profile/settings" class="info-link" sref="settings">
+                                       <img class="user-image" ng-src="{{::user.imageSrc}}">
+                                   </a>
+                               </div>
+                               <div class="text">
+                                   <h3>{{::"Welcome back, {0}!"|lang:user.name}}</h3>
+                                   <h4 ng-if="newsFirstLine.length">{{"Look! This is most popular news since your last visit."|lang}}</h4>
+                               </div>
+                           </div>
+                           <div class="body">
+                               <div class="news">
+                                   <div class="first-line">
+                                       <div class="first-line-article" ng-repeat="article in newsFirstLine">
+                                           <div class="article-image" rdr-bg-img="{{::article.imageUrl}}">
+                                               <div class="desc">
+                                                   <div class="title" ng-click="openArticlePreview(article, $event)">{{::article.title|cut:120}}</div>
+                                                   <div class="additional-info">
+                                                       <span class="feed-icon">
+                                                            <img ng-src="{{::article.feed.smallIconSrc}}" ng-if="::article.feed.smallIconSrc">
+                                                        </span>
+                                                       <span class="feed-name"> <a ui-sref="home.showFeed({feedId: article.feed.id})" href="#" class="subscribe-link"> {{::article.feed.title|cut:30}}</a> </span>
+                                                       <span class="author" ng-if="::article.author"> | {{::article.author}} </span>
+                                                       <span> | </span>
+                                                       <div class="date">{{::article.elapsedDate}}</div>
+                                                   </div>
+                                                   <div class="announce">
+                                                       {{::article.text|cut:80}}
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class="other-news">
+                                       <div class="article" ng-repeat="article in newsOthers">
+                                           <div class="row">
+                                               <div class="image">
+                                                   <a href="{{::article.link}}" target="_blank">
+                                                       <img class="article-photo img-responsive non-empty-photo" ng-src="{{::article.imageUrl}}" ng-if="::article.imageUrl" />
+                                                       <!-- img class="img-responsive empty-photo" ng-src="static/img/common/no-image-128x128.png" ng-if="!article.imageUrl" /-->
+                                                   </a>
+                                               </div>
+                                               <div class="description">
+                                                   <div class="title">
+                                                       <a href="{{::article.link}}" target="_blank">{{::article.title|cut:220}}</a>
+                                                   </div>
+                                                   <div class="additional-info">
+                                                       <span class="feed-icon">
+                                                            <img ng-src="{{::article.feed.smallIconSrc}}" ng-if="::article.feed.smallIconSrc">
+                                                        </span>
+                                                       <span class="feed-name"> <a ui-sref="home.showFeed({feedId: article.feed.id})" href="#" class="subscribe-link"> {{::article.feed.title|cut:30}}</a> </span>
+                                                       <span class="date"> | {{::article.elapsedDate}}</span>
+                                                       <span class="author" ng-if="::article.author"> | {{::article.author}} </span>
+                                                   </div>
+                                                   <div class="text" ng-bind-html="::article.text|cut:400|trust">
+                                                   </div>
+                                                   <div class="links">
+                                                       <a href="#" class="btn btn-default" ng-click="openArticlePreview(article, $event)">{{"Show full article"|lang}}</a>
+                                                       <a href="{{::article.link}}" class="btn btn-default"  target="_blank">{{"Open link"|lang}}</a>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="separate"></div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="right-col">
+                       <div class="search clearfix">
+                           <h4>{{"Search"|lang}}</h4>
+                           <form name="searchForm" class="navbar-form feeds-search-form" role="search" ng-submit="onSearchFormSubmit($event)">
+                               <div class="text-container">
+                               <div class="form-group">
+                                   <input type="text" name="text" class="form-control" placeholder="{{'Text for search'|lang}}"
+                                           ng-model="searchFormModel.query"/>
+                               </div>
+                               <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> {{'Search'|lang}}</button>
+                               </div>
+                               <div class="row">
+                                   <div class="options-container col-md-6">
+                                           <p>
+                                               {{'Search in'|lang}}:
+                                           </p>
+                                           <div class="search-type">
+                                               <div class="radio">
+                                                   <input type="radio" name="searchIn" value="all"
+                                                           ng-model="searchFormModel.searchIn" /> {{'All articles'|lang}}
+                                               </div>
+                                               <div class="radio">
+                                                   <input type="radio" name="searchIn" value="read"
+                                                           ng-model="searchFormModel.searchIn" /> {{'Read only'|lang}}
+                                               </div>
+                                               <div class="radio">
+                                                   <input type="radio" name="searchIn" value="unread"
+                                                          ng-model="searchFormModel.searchIn" /> {{'Unread only'|lang}}
+                                               </div>
+                                               <div class="radio">
+                                                   <input type="radio" name="searchIn" value="fav"
+                                                          ng-model="searchFormModel.searchIn" /> {{'Favorites only'|lang}}
+                                               </div>
+                                           </div>
+                                   </div>
+                                   <div class="options-container col-md-6">
+                                       <p>
+                                           {{'Include'|lang}}:
+                                       </p>
+                                       <div class="search-in">
+                                           <div class="checkbox-row">
+                                               <input type="checkbox" name="include" value="all"
+                                                      ng-model="searchFormModel.include.title" /> {{'Title'|lang}}
+                                           </div>
+                                           <div class="checkbox-row">
+                                               <input type="checkbox" name="include" value="read"
+                                                      ng-model="searchFormModel.include.announce" /> {{'Announce'|lang}}
+                                           </div>
+                                           <div class="checkbox-row">
+                                               <input type="checkbox" name="include" value="unread"
+                                                      ng-model="searchFormModel.include.text" /> {{'Article text'|lang}}
+                                           </div>
+
+                                       </div>
+                                   </div>
+                               </div>
+                           </form>
+                       </div>
+
+                   </div>
+
+               </div>
+           </div>
+        <div class="overlay-substrate" ng-click="hideSubstrate()"></div>
+    </div>
+</div>

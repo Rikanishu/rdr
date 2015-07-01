@@ -1,0 +1,102 @@
+<div class="signup-profile-background">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="signUpModalLabel">{{"Sign up"|lang}}</h4>
+            </div>
+            <form name="registrationForm"
+                  class="registration-form"
+                  novalidate
+                  role="form"
+                  ng-submit="submit(registrationModel, registrationForm)">
+                <div class="modal-body clearfix">
+                    <div class="signup-holder">
+                        <fieldset>
+                            <div class="col-md-6">
+                                <p>{{"Use this form for create new account"|lang}}</p>
+                                <div class="form-inner">
+                                    <div class="form-group">
+                                        <label class="control-label" for="registrationEmail">{{"Email"|lang}}</label>
+                                        <input name="email"
+                                               type="email"
+                                               class="form-control"
+                                               id="registrationEmail"
+                                               ng-model="registrationModel.email"
+                                               placeholder="{{ 'Enter your email'|lang }}"
+                                               rdr-validation-remote
+                                               required />
+                                        <div class="errors" ng-show="validation.isShowError('email')">
+                                            <span class="error">{{validation.getErrorMessage('email')}}</span>
+                                        </div>
+                                        <ul class="errors" ng-show="registrationForm.$submitted || registrationForm.email.$dirty">
+                                            <li class="error" ng-show="registrationForm.email.$error.required">{{"Required field"|lang}}</li>
+                                            <li class="error" ng-show="registrationForm.email.$error.email">{{"Invalid email"|lang}}</li>
+                                            <li class="error" ng-show="registrationForm.email.$error.unique">{{"Email already taken"|lang}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="username">{{"Display Name"|lang}}</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="username"
+                                               name="username"
+                                               ng-model="registrationModel.username"
+                                               placeholder="{{ 'Enter display name'|lang }}"
+                                               ng-minlength="3"
+                                               ng-maxlength="255"
+                                               required />
+                                        <ul class="errors" ng-show="registrationForm.$submitted || registrationForm.username.$dirty">
+                                            <li class="error" ng-show="registrationForm.username.$error.required">{{"Required field"|lang}}</li>
+                                            <li class="error" ng-show="registrationForm.username.$error.minlength">{{"Username is required to be at least 3 characters"|lang}}</li>
+                                            <li class="error" ng-show="registrationForm.username.$error.maxlength">{{"Username cannot be longer than 255 character"|lang}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="password">{{"Password"|lang}}</label>
+                                        <input type="password"
+                                               class="form-control"
+                                               id="password"
+                                               ng-model="registrationModel.password"
+                                               placeholder="{{ 'Enter password'|lang }}"
+                                               ng-minlength="6"
+                                               ng-maxlength="255"
+                                               name="password" required />
+                                        <ul class="errors" ng-show="registrationForm.$submitted || registrationForm.password.$dirty">
+                                            <li class="error" ng-show="registrationForm.password.$error.required">{{"Required field"|lang}}</li>
+                                            <li class="error" ng-show="registrationForm.password.$error.minlength">{{"Password is required to be at least 6 characters"|lang}}</li>
+                                            <li class="error" ng-show="registrationForm.password.$error.maxlength">{{"Password cannot be longer than 255 character"|lang}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="passwordConfirm">{{"Password Confirm"|lang}}</label>
+                                        <input type="password"
+                                               class="form-control"
+                                               id="passwordConfirm"
+                                               name="passwordConfirm"
+                                               placeholder="{{ 'Confirm password'|lang }}"
+                                               ng-model="registrationModel.passwordConfirm"
+                                               rdr-validation-equals-with="registrationModel.password"
+                                               required />
+                                        <ul class="errors" ng-show="registrationForm.$submitted || registrationForm.passwordConfirm.$dirty">
+                                            <li class="error" ng-show="registrationForm.passwordConfirm.$error.required">{{"Required field"|lang}}</li>
+                                            <li class="error" ng-show="registrationForm.passwordConfirm.$error.equals">{{"Passwords must be equals"|lang}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-center register-avatar">
+                                    <img class="img-rounded img-rounded" src="static/img/users/default.png" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- button type="button" class="btn btn-default" ng-click="onBackClick()">Back</button -->
+                    <button id="signUpSubmit" type="submit" class="btn btn-success">{{"Sign up"|lang}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

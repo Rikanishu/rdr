@@ -1,0 +1,172 @@
+/* ========== Common mixins =========== */
+.offline-read-queue {
+  margin-left: -15px;
+  margin-right: -15px;
+  height: 100%;
+}
+.offline-read-queue .left-block {
+  float: left;
+  width: 0%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 100%;
+  box-shadow: 0px 4px 20px 0px #000000;
+  z-index: 20;
+}
+@media (min-width: 768px) {
+  .offline-read-queue .left-block {
+    float: left;
+    width: 0%;
+  }
+}
+@media (min-width: 992px) {
+  .offline-read-queue .left-block {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (min-width: 1200px) {
+  .offline-read-queue .left-block {
+    float: left;
+    width: 16.66666667%;
+  }
+}
+@media (max-width: 767px) {
+  .offline-read-queue .left-block {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .offline-read-queue .left-block {
+    display: none !important;
+  }
+}
+.offline-read-queue .middle-block {
+  float: left;
+  width: 66.66666667%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /*background: #cccccc;*/
+  background: url('/static/img/textures/stardust.png') repeat;
+  height: 100%;
+  overflow: auto;
+}
+@media (min-width: 768px) {
+  .offline-read-queue .middle-block {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 992px) {
+  .offline-read-queue .middle-block {
+    float: left;
+    width: 58.33333333%;
+  }
+}
+@media (min-width: 1200px) {
+  .offline-read-queue .middle-block {
+    float: left;
+    width: 58.33333333%;
+  }
+}
+.offline-read-queue .middle-block > .empty-articles {
+  margin-top: 60px;
+  margin-left: 8%;
+  margin-right: 8%;
+  padding: 20px;
+  box-shadow: 4px 4px 20px 0px #000000;
+  text-align: center;
+  background: #ffffff;
+}
+.offline-read-queue .middle-block > .article {
+  overflow: hidden;
+  background: #ffffff;
+  margin: 3% 8%;
+  padding: 10px;
+  box-shadow: 4px 4px 20px 0px #000000;
+}
+.offline-read-queue .middle-block > .article .header {
+  position: relative;
+}
+.offline-read-queue .middle-block > .article .header:before,
+.offline-read-queue .middle-block > .article .header:after {
+  content: " ";
+  display: table;
+}
+.offline-read-queue .middle-block > .article .header:after {
+  clear: both;
+}
+.offline-read-queue .middle-block > .article .header .title {
+  font-weight: bold;
+  font-size: 16px;
+  padding-right: 20px;
+}
+.offline-read-queue .middle-block > .article .header .title > a {
+  color: inherit;
+}
+.offline-read-queue .middle-block > .article .header .close-button-icon {
+  color: inherit;
+  text-align: right;
+  position: absolute;
+  right: 5px;
+  top: 2px;
+}
+.offline-read-queue .middle-block > .article .header .close-button-icon > a {
+  color: #000000;
+}
+.offline-read-queue .middle-block > .article .additional-info {
+  margin-bottom: 20px;
+}
+.offline-read-queue .middle-block > .article .additional-info > .feed-name > a {
+  display: inline-block;
+  vertical-align: middle;
+  color: inherit;
+}
+.offline-read-queue .middle-block > .article .additional-info > .date {
+  display: inline-block;
+  vertical-align: middle;
+}
+.offline-read-queue .middle-block > .article .article-image {
+  width: 180px;
+  height: 180px;
+  background: no-repeat center;
+  background-size: 140%;
+  float: left;
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+.offline-read-queue .right-block {
+  float: left;
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .offline-read-queue .right-block {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 992px) {
+  .offline-read-queue .right-block {
+    float: left;
+    width: 25%;
+  }
+}
+@media (min-width: 1200px) {
+  .offline-read-queue .right-block {
+    float: left;
+    width: 25%;
+  }
+}
+.offline-read-queue .right-block .save-form {
+  margin-top: 50px;
+  padding: 10px;
+}

@@ -1,0 +1,50 @@
+/* ========== Common mixins =========== */
+
+@import "../bootstrap/less/variables.less";
+@import "../bootstrap/less/mixins/grid.less";
+@import "../bootstrap/less/mixins/clearfix.less";
+@import "../bootstrap/less/mixins/image.less";
+
+.text-select-none() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.make-columns(@xs, @sm, @md, @lg) {
+  .make-xs-column(@xs);
+  .make-sm-column(@sm);
+  .make-md-column(@md);
+  .make-lg-column(@lg);
+}
+
+.make-all-columns(@val) {
+  .make-xs-column(@val);
+  .make-sm-column(@val);
+  .make-md-column(@val);
+  .make-lg-column(@val);
+}
+
+.hide-xs() {
+  @media (max-width: @screen-xs-max) {
+    display: none !important;
+  }
+}
+.hide-sm() {
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    display: none !important;
+  }
+}
+.hide-md() {
+  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    display: none !important;
+  }
+}
+.hide-lg() {
+  @media (min-width: @screen-lg-min) {
+    display: none !important;
+  }
+}

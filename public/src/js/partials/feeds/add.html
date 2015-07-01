@@ -1,0 +1,74 @@
+<div class="feeds-selection">
+    <div class="search-form">
+        <h3><span class="fa fa-rss-square"></span> {{"Add new feed"|lang}}</h3>
+        <p>{{"You can add new feed via this form or select form popular / provided feeds"|lang}}</p>
+        <form class="feed-search" role="form" ng-submit="onSubmit()">
+            <div class="form-group">
+                <label class="sr-only" for="searchFeed">{{"Feed"|lang}}</label>
+            </div>
+            <div class="form-group feeds-search">
+                <input type="text" class="form-control" id="searchFeed" ng-model="query" placeholder="{{'Enter feed url / keywords'|lang}}"/>
+            </div>
+            <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span> {{"Search feeds"|lang}}</button>
+        </form>
+        </div>
+    <hr/>
+    <div class="feeds col-md-offset-1 col-md-10">
+        <div class="packages" rdr-loading="showLoading">
+            <div class="has-result-container" ng-if="isSearched">
+                <div ng-show="isSearched && (!packages || !packages.length)">
+                    <p>{{"Packages not found"|lang}}</p>
+                </div>
+                <div ng-show="isSearched && packages && packages.length">
+                    <h4>{{"Packages"|lang}}</h4>
+
+                    <p>
+                        {{"Found {0} packages"|lang:packages.length}} <br/>
+                        {{"Drag packages to your folder to start reading"|lang}}
+                    </p>
+                    <hr />
+                </div>
+                <div class="package-item" ng-repeat="package in packages" ng-drag="true" ng-drag-data="package" ng-if="!package._isHidden">
+                    <div class="image">
+                        <img class="img" ng-src="{{::package.iconSrc}}" />
+                    </div>
+                    <div class="description">
+                        <div class="title" title="{{::package.title}}"><span class="fa fa-rss"></span>  <a ui-sref="home.showFeed({feedId: package.id})" href="#" class="subscribe-link" ng-prevent-drag="true">{{::package.title}}</a> </div>
+                        <div class="short-description">{{::package.shortDescription}}</div>
+                        <div class="subscribed-info">
+                            <span class="fa fa-users"></span> {{"Read {0} users"|lang:package.subscribedCount}}
+                        </div>
+                        <div class="user-subscribed-flag" rdr-visible="package.isSubscribed">
+                            <span class="fa fa-check-circle"></span> {{"You already subscribed."|lang}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popular-packages" ng-if="!isSearched && popularPackages && popularPackages.length">
+                <h4>{{"Popular packages"|lang}}</h4>
+                <p>
+                    {{"This is some of most popular feeds among our users."|lang}}<br/>
+                    {{"For subscribing just drop package to your subscribes side block."|lang}}
+                </p>
+                <div class="body">
+                    <div class="package-item" ng-repeat="package in popularPackages" ng-drag="true" ng-drag-data="package" ng-if="!package._isHidden">
+                        <div class="image">
+                            <img class="img" ng-src="{{::package.iconSrc}}" />
+                        </div>
+                        <div class="description">
+                            <div class="title" title="{{::package.title}}"><span class="fa fa-rss"></span>  <a ui-sref="home.showFeed({feedId: package.id})" href="#" class="subscribe-link" ng-prevent-drag="true">{{::package.title}}</a> </div>
+                            <div class="short-description">{{::package.shortDescription}}</div>
+                            <div class="subscribed-info">
+                                <span class="fa fa-users"></span> {{"Read {0} users"|lang:package.subscribedCount}}
+                            </div>
+                            <div class="user-subscribed-flag" rdr-visible="package.isSubscribed">
+                                <span class="fa fa-check-circle"></span> {{"You already subscribed."|lang}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

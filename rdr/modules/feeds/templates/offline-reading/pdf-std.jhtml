@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{_('Offline read queue')}} | {{username}} | {{gen_date}}</title>
+    <style>
+
+        @import '{{ url }}/static/css/fonts.css';
+
+        body {
+            font-family: "PT Sans", "DejaVu Sans", sans-serif;
+        }
+
+        body > .header {
+            margin: 20px;
+            padding-bottom: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-family: "PT Sans Narrow", sans-serif;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        body > .header > .title {
+            font-size: 24px;
+        }
+
+        body > .header > .gen-date {
+            font-size: 14px;
+        }
+        
+        .article {
+            margin-top: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            padding: 10px;
+            page-break-inside: avoid !important;
+        }
+
+        .article .title {
+            font-weight: bold;
+            font-family: "PT Sans Narrow", sans-serif;
+            font-size: 22px;
+            margin-top: 5px;
+        }
+
+        .article .additional-details {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .article .additional-details span {
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .article .additional-details img {
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .article .additional-details .feed-name {
+            margin-left: 5px;
+        }
+
+        .article .text {
+            font-size: 14px;
+            font-family: "PT Serif", "DejaVu Sans", serif;
+        }
+
+        .article .links {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .article .article-image {
+            width: 180px;
+            height: 180px;
+            background: no-repeat center;
+            background-size: 140%;
+            float: left;
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">
+            {{_('Articles for user')}} <span class="username">{{username}}</span>
+        </div>
+        <div class="gen-date">
+            {{gen_date}}
+        </div>
+    </div>
+    <div class="articles-container">
+        {% for article in articles %}
+            <div class="article">
+                <div class="title">
+                    {{article['title'] | truncate(120)}}
+                </div>
+                <div class="additional-details">
+                    {% if article.feed.get('smallIconSrc') %}
+                        <span class="feed-icon">
+                            <img src="{{ url + article.feed.get('smallIconSrc') }}">
+                        </span>
+                    {% endif %}
+                    <span class="feed-name">
+                        {{ article.feed['title'] }} |
+                    </span>
+                    <span class="date">
+                        {{ article['date'] }}
+                    </span>
+                    {% if article.feed.get('author') %}
+                        <span class="author">
+                            {{ article }}
+                        </span>
+                    {% endif %}
+                </div>
+                <div class="text">
+                    {% if article.get('imageUrl') %}
+                        <div class="article-image" style="background-image: url('{{article.get('imageUrl') }}')">
+                        </div>
+                    {% endif %}
+                    {{(article['fullText'] or article['text']) | safe}}
+                </div>
+                <div class="links">
+                    {{ _('Original') }}: <a href="{{ article['link'] }}">{{ article['link'] }}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

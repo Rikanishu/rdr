@@ -1,0 +1,166 @@
+@import "common.less";
+
+.feeds-content {
+
+  .manage-subscribes {
+
+    .root-subscribes {
+      .clearfix();
+
+      .items-container {
+        overflow: hidden;
+        min-height: 60px;
+
+        > .empty-drag-zone {
+          display: none;
+        }
+
+        &.drag-enter {
+
+            > .empty-drag-zone {
+              display: block;
+              text-align: center;
+              padding: 20px;
+              border-radius: 10px;
+
+              &.drag-enter {
+                background: #ddd;
+              }
+
+            }
+
+        }
+
+        .empty-subscriptions {
+          text-align: center;
+        }
+
+      }
+
+    }
+
+    .manage-subscribe-item {
+      display: inline-block;
+      cursor: pointer;
+      width: 250px;
+      margin: 5px;
+      border: 1px solid #000000;
+      padding: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      background: #ffffff;
+      position: relative;
+
+      .subscribe-icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      .subscribe-title {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 180px;
+        overflow: hidden;
+      }
+
+      .remove {
+        cursor: pointer;
+        opacity: 0.8;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+
+    }
+
+    .folders {
+      .clearfix();
+
+      > .controls {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+      }
+
+
+      .manage-subscribe-folder-item {
+        width: 280px;
+        border: 1px solid #333333;
+        margin: 5px;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+
+        > .header {
+          height: 36px;
+          color: #ffffff;
+          padding: 5px;
+          background: #333333;
+
+          > .name {
+            display: inline-block;
+            padding: 2px;
+            font-weight: bold;
+          }
+
+          > .name-change {
+            color: #000000;
+
+            > form {
+              display: inline-block;
+
+              > input {
+                width: 200px;
+              }
+
+            }
+
+          }
+
+          > .remove {
+            margin-right: 5px;
+            cursor: pointer;
+            opacity: 0.8;
+            display: inline-block;
+            float: right;
+            margin-top: 4px;
+            vertical-align: middle;
+          }
+
+        }
+
+        > .body {
+          padding: 5px;
+          min-height: 60px;
+
+          > .empty-drag-zone {
+            display: none;
+          }
+
+          &.drag-enter {
+
+            > .empty-drag-zone {
+              display: block;
+              text-align: center;
+              padding: 10px;
+              border-radius: 10px;
+
+              &.drag-enter {
+                background: #ddd;
+              }
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

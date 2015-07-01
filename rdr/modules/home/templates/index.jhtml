@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+    <title>Reader</title>
+    <link rel="icon" href="/static/img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% asset statics, "MainStyles" %}
+</head>
+<body ng-app="rdr">
+<div class="page-container ng-cloak">
+    <div id="header">
+       <div ng-include="'static/js/partials/header.html'"></div>
+    </div>
+    <div id="content" class="ng-cloak" ui-view>
+
+    </div>
+    <div id="footer">
+
+    </div>
+</div>
+
+{% asset statics, "MainScripts" %}
+{% asset statics, "AngularModules" %}
+
+<script type="text/javascript">
+    (function() {
+        angular.module('rdr').value("initData", JSON.parse('{{ init_data|safe }}'));
+    }());
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<h3>
+    {{"Manage Subscribes"|lang}}
+</h3>
+<div class="manage-subscribes" rdr-loading="isLoading">
+    <hr/>
+    <div class="actions">
+        <button class="btn btn-primary" ng-click="onSave()()">
+            <span class="fa fa-save"></span> {{"Save"|lang}}
+        </button>
+        <button class="btn btn-default" ng-click="onBack()()">
+            <span class="fa fa-chevron-left"></span> {{"Back"|lang}}
+        </button>
+        <button class="btn btn-default" ng-click="onRevert()" ng-if="commands.length">
+            <span class="fa fa-undo"></span> {{"Undo {0}"|lang:commands[0].title}}
+        </button>
+    </div>
+    <hr />
+    <div class="root-subscribes">
+        <h4>
+            {{"Subscribes"|lang}}
+        </h4>
+        <div class="items-container" ng-drop="true">
+            <div class="manage-subscribe-item" ng-repeat="sub in rootSubscribes" ng-drag="true"  ng-drag-data="sub" ng-drop="true" ng-drop-success="onDropInRootSubscription(sub, $data, $event)">
+                <img class="subscribe-icon" ng-src="{{::sub.iconSrc}}" /><span class="subscribe-title">{{::sub.name}}</span>
+                <span class="remove fa fa-close" ng-click="onSubscriptionRemove(sub, $event)" ng-prevent-drag="true">
+                </span>
+            </div>
+            <div class="empty-subscriptions" ng-if="!rootSubscribes.length">
+                {{"All subscriptions is in folders"|lang}}
+            </div>
+            <div class="empty-drag-zone" ng-drop="true" ng-drop-success="onDropInRoot($data, $event)">
+                <div>
+                    <span class="fa fa-plus-circle fa-2x"></span>
+                </div>
+                {{"Drop subscription to move it here"|lang}}
+            </div>
+    </div>
+    <div class="folders">
+        <h4>
+            {{"Folders"|lang}}
+        </h4>
+        <div class="controls">
+            <button class="btn btn-default" ng-click="onAddFolder()">
+                <span class="fa fa-folder"></span> {{"Add new folder"|lang}}
+            </button>
+        </div>
+        <div class="items-container">
+            <div class="manage-subscribe-folder-item" ng-repeat="folder in folders">
+                <div class="header">
+                    <span class="name" ng-if="!folder._isEdit">{{folder.name}}</span>
+                    <span class="name-change" ng-if="folder._isEdit">
+                        <form name="folder-change" ng-submit="onFolderNameChange(folder)">
+                            <input type="text" name="folder-name" val="{{folder.name}}" ng-model="folder.name" autofocus="autofocus" />
+                        </form>
+                    </span>
+                    <span class="remove fa fa-close" ng-click="onFolderRemove(folder)">
+                    </span>
+                    <span class="remove fa fa-pencil" ng-click="onFolderEdit(folder)">
+                    </span>
+                </div>
+                <div class="body" ng-drop="true">
+                    <div class="manage-subscribe-item" ng-repeat="sub in folder.feeds" ng-drag="true" ng-drag-data="sub" ng-drop="true" ng-drop-success="onDropInFolderSubscription(sub, folder, $data, $event)">
+                        <img class="subscribe-icon" ng-src="{{::sub.iconSrc}}" /><span class="subscribe-title">{{::sub.name}}</span>
+                        <span class="remove fa fa-close" ng-click="onSubscriptionRemove(sub, $event)" ng-prevent-drag="true">
+                        </span>
+                    </div>
+                    <div class="empty-drag-zone" ng-drop="true" ng-drop-success="onDropInFolder(folder, $data, $event)">
+                        <div>
+                            <span class="fa fa-plus-circle fa-2x"></span>
+                        </div>
+                        {{"Drop subscription to move it here"|lang}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

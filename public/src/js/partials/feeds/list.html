@@ -1,0 +1,225 @@
+<div class="feeds-container-overlay"
+     rdr-loading="pageLoading" rdr-loading-message="{{ 'Selected feed is loading'|lang }}">
+    <div class="feed-header clearfix">
+        <div class="title">
+            <img ng-src='{{ ::feed.iconSrc }}' class="feed-title-image" ng-show="::feed.iconSrc" />
+            <span class="feed-name">
+                <a href="{{::feed.url}}" ng-if="feed.url">{{ ::feed.title }}</a>
+                <span ng-if="!feed.url">{{ ::feed.title }}</span>
+            </span>
+            <div class="feed-header-options clearfix">
+
+                <button class="btn btn-default" ng-click="subscribe($event)" ng-if="feed.id && !feed.isSubscribed"><span class="fa fa-rss"></span> {{"Subscribe"|lang}}</button>
+                <button class="btn btn-default" ng-click="syncArticles($event)" ng-if="!cannotBeUpdated"><span class="fa fa-refresh"></span></button>
+                <div class="btn-group">
+                    <button class="btn btn-default" ng-click="setViewTypeList($event)" ng-class="{active: viewType == 'list'}"><span class="fa fa-list"></span></button>
+                    <button class="btn btn-default" ng-click="setViewTypePreview($event)" ng-class="{active: viewType == 'preview'}"><span class="fa fa-th-list"></span></button>
+                </div>
+                <div class="btn-group" ng-if="(!cannotHaveUnread || feed.id && feed.isSubscribed)">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        {{"Actions"|lang}} <span class="fa fa-caret-down"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#" ng-click="markAllAsRead($event)" ng-if="!cannotHaveUnread"><span class="fa fa-eye"></span> {{'Mark all as read'|lang}}</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="addUnreadToOfflineQueue($event)" ng-if="!cannotHaveUnread"><span class="fa fa-cloud-download"></span> {{'Add unread to offline read queue'|lang}}</a>
+                        </li>
+                        <li class="divider" ng-if="feed.id && feed.isSubscribed"></li>
+                        <li><a href="#" ng-if="feed.id && feed.isSubscribed">{{"Unsubscribe"|lang}}</a></li>
+                    </ul>
+                </div>
+                <form class="search-form" role="search" ng-submit="onSearchFormSubmit($event)">
+                    <div class="form-group">
+                        <input type="text" name="text" class="search-input form-control" placeholder="{{'Text for search'|lang}}"
+                               ng-model="searchFormModel.query"/>
+                    </div>
+                    <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> {{'Search'|lang}}</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="row feed-body-container" ng-show="feed.articles.length"  rdr-loading="articlesLoading">
+        <div class="articles fixed-container without-preview"
+             rdr-on-reach-scroll-bottom="loadMore()"
+             rdr-read-article-toggle
+             >
+
+            <div class="articles-list">
+                <div id="article-{{article.id}}"  class="article-item clearfix" ng-class="{read: article.isRead}" ng-repeat="article in feed.articles" rdr-visible="!article._isNotVisible">
+                    <div class="short" ng-if="!article._isExpanded" ng-click="onArticleExpand(article)">
+                        <div class="heading clearfix">
+                            <span class="text-line">
+                                <!--span class="feed-icon">
+                                    <img ng-src="{{article.feed.smallIconSrc}}" ng-if="article.feed.smallIconSrc">
+                                </span-->
+                                <span class="title">
+                                    {{::article.title}}
+                                </span>
+                                <span class="short-text">
+                                    {{ ::article.text|cut:120 }}
+                                </span>
+                            </span>
+
+                            <span class="date">
+                                {{ ::article.elapsedDate }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="middle" ng-if="article._isExpanded">
+                        <div class="heading clearfix">
+                            <span class="text-line">
+                                <span class="title">
+                                    <a class="open-url-link" target="_blank" href="{{::article.link}}">{{ ::article.title }}</a>
+                                </span>
+                            </span>
+                            <span class="date">
+                                {{ ::article.elapsedDate }}
+                            </span>
+                        </div>
+                        <div class="article-body">
+                            <div class="article-info">
+                                <span class="feed-icon">
+                                    <img ng-src="{{::article.feed.smallIconSrc}}" ng-if="::article.feed.smallIconSrc">
+                                </span>
+                                <span class="feed-name">
+                                    <a class="feed-url-link"  ui-sref="home.showFeed({feedId: article.feed.id})" href="#" ng-if="::article.feed.url">{{::article.feed.title|cut:60}}</a>
+                                    <span ng-if="::!article.feed.url">{{::article.feed.title|cut:60}}</span>
+                                </span>
+                                <span class="full-publication-date"> | {{::article.elapsedDate}}</span>
+                                <span class="author" ng-if="::article.author"> | {{::article.author|cut:200}}</span>
+                            </div>
+                            <div class="text">
+                                <div class="article-image" rdr-bg-img="{{::article.imageUrl}}" ng-show="::article.imageUrl"></div>
+                                <p class="bind-text" ng-bind-html="::article.text">
+
+                                </p>
+                            </div>
+                            <div class="controls">
+                                <div class="buttons">
+                                    <a href="{{::article.link}}" target="_blank" class="btn btn-primary" ng-show="::article.link">
+                                        <span class="fa fa-external-link-square"></span> {{"Open link"|lang}}
+                                    </a>
+                                    <a href="#" class="btn btn-default" ng-click="onReadArticle(article, $event)">
+                                        <span class="fa fa-book"></span> {{"Show full article"|lang}}
+                                    </a>
+                                    <a href="#" class="btn btn-default" ng-click="onAddToFavorites(article, $event)">
+                                        <span ng-if="!article.isInFavorites">
+                                            <span class="fa fa-star-o"></span> {{"Add to favorites"|lang}}
+                                        </span>
+                                        <span ng-if="article.isInFavorites">
+                                            <span class="fa fa-star"></span> {{"Remove from favorites"|lang}}
+                                        </span>
+                                    </a>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <span class="fa fa-send"></span> {{"Send"|lang}} <span class="fa fa-caret-down"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#" ng-click="addArticleToOfflineQueue(article, $event)"><span class="fa fa-cloud-download"></span> {{'To offline read queue'|lang}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="stats">
+                                    <span class="counts views-count" title="{{'Read count'|lang}}">
+                                        <span class="fa fa-eye"></span> {{article.viewsCount}}
+                                    </span>
+                                    <div class="sep"></div>
+                                    <span class="counts favs-count" title="{{'Favorites count'|lang}}">
+                                        <span class="fa fa-star"></span> {{article.favoritesCount}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="loading-more-articles"
+                     rdr-loading="pageLoad"
+                     rdr-loading-message="{{'Please wait while articles are loading'|lang}}">
+                </div>
+            </div>
+        </div>
+        <div class="article-read" rdr-read-article-toggle>
+            <div class="header row">
+                <div class="title">
+                    <a href="{{readArticle.article.link}}" target="_blank" ng-show="readArticle.article.link">
+                        {{readArticle.article.title}}
+                    </a>
+                </div>
+                <div class="close-button">
+                    <a href="#" class="close-button" ng-click="onReadArticleClose($event)"><span class="fa fa-times-circle"></span></a>
+                </div>
+            </div>
+            <hr class="header-border" />
+            <div class="body"
+                 rdr-loading="isReadArticleLoad"
+                 rdr-loading-message="{{'Please wait while we retrieve full article text'|lang}}">
+                <div class="image" ng-show="readArticle.fullText.imageUrl">
+                    <img class="img-responsive" ng-src="{{readArticle.fullText.imageUrl}}" />
+                    <hr/>
+                </div>
+                <div class="actions-bar clearfix">
+                    <div class="date">
+                        <span class="feed-icon">
+                            <img ng-src="{{readArticle.article.feed.smallIconSrc}}" ng-if="readArticle.article.feed.smallIconSrc">
+                        </span>
+                        <span class="feed-name">{{readArticle.article.feed.title|cut:30}}</span> | {{readArticle.article.elapsedDate}}
+                    </div>
+                    <div class="actions">
+                        <div class="buttons">
+                            <a href="{{readArticle.article.link}}" target="_blank" class="btn btn-primary" ng-show="readArticle.article.link">
+                                <span class="fa fa-external-link-square"></span> {{"Open link"|lang}}
+                            </a>
+                            <a href="#" class="btn btn-default" ng-click="onAddToFavorites(readArticle.article, $event)">
+                                <span ng-if="!readArticle.article.isInFavorites">
+                                    <span class="fa fa-star-o"></span> {{"Add to favorites"|lang}}
+                                </span>
+                                <span ng-if="readArticle.article.isInFavorites">
+                                    <span class="fa fa-star"></span> {{"Remove from favorites"|lang}}
+                                </span>
+                            </a>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="fa fa-send"></span> {{"Send"|lang}} <span class="fa fa-caret-down"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#" ng-click="addArticleToOfflineQueue(readArticle.article, $event)"><span class="fa fa-cloud-download"></span> {{'To offline read queue'|lang}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="stats">
+                            <span class="counts views-count" title="{{'Read count'|lang}}">
+                                <span class="fa fa-eye"></span> {{readArticle.article.viewsCount}}
+                            </span>
+                            <span class="counts favs-count" title="{{'Favorites count'|lang}}">
+                                <span class="fa fa-star"></span> {{readArticle.article.favoritesCount}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="text" ng-bind-html="readArticle.fullText.text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="empty-feed" ng-show="!feed.articles.length">
+        <div class="placeholder">
+            <div class="image">
+                <img src="/static/img/feeds/paper-128x128.png" />
+            </div>
+            <div class="text" ng-if="!isFavorites">
+                {{'No any news at the moment'|lang}}
+            </div>
+            <div class="text" ng-if="isFavorites">
+                {{'You have no favorites'|lang}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+<div class="profile-settings-form">
+    <div class="heading">
+        <h3>{{"Settings"|lang}}</h3>
+    </div>
+    <hr/>
+    <div class="profile-data">
+        <h4>{{"Profile data"|lang}}</h4>
+        <div class="block clearfix">
+            <form name="settingsForm" class="col-md-8" ng-submit="settingsFormSubmit(settingsForm, settingsFormModel)">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="photo-container form-group">
+                            <label class="control-label">{{"User image"|lang}}</label>
+                            <div class="image">
+                                <img class="img-rounded" ng-src="{{user.imageSrc}}" />
+                            </div>
+                            <input type="hidden"
+                                   id="new-image"
+                                   name="new-image"
+                                   ng-model="settingsFormModel.image">
+                            <div class="file-input">
+                                <div upload-button class="btn btn-upload btn-info" url="/images/upload/user" accept="image/*" multiple="false" on-success="onImageUpload(response)" >{{"Upload"|lang}}</div>
+                            </div>
+                            <ul class="errors" ng-show="settingsForm.$submitted || settingsForm.image.$dirty">
+                                <li class="error" ng-show="settingsForm.image.$error.invalidFormat">{{"Invalid image format"|lang}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group email-group">
+                            <label class="control-label">{{"Email"|lang}}</label>
+                            <p>
+                                <span class="email">{{user.email}}</span>
+                            </p>
+                            <p>
+                                <span class="email-confirmation-status" ng-show="user.isEmailConfirmed">
+                                    <span class="fa fa-check-circle success-icon"></span> {{"Email completed successfully."|lang}}
+                                </span>
+                                <span class="email-confirmation-status" ng-show="!user.isEmailConfirmed">
+                                    <span class="fa fa-exclamation-circle failed-icon"></span> {{"Email has not confirmed yet."|lang}}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="username">{{"Display Name"|lang}}</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="username"
+                                   name="username"
+                                   ng-model="settingsFormModel.username"
+                                   placeholder="{{ 'Enter display name'|lang }}"
+                                   ng-minlength="3"
+                                   ng-maxlength="255"
+                                   required />
+                            <ul class="errors" ng-show="settingsForm.$submitted || settingsForm.username.$dirty">
+                                <li class="error" ng-show="settingsForm.username.$error.required">{{"Required field"|lang}}</li>
+                                <li class="error" ng-show="settingsForm.username.$error.minlength">{{"Username is required to be at least 3 characters"|lang}}</li>
+                                <li class="error" ng-show="settingsForm.username.$error.maxlength">{{"Username cannot be longer than 255 character"|lang}}</li>
+                            </ul>
+                        </div>
+                        <div class="settings-form-actions form-group">
+                            <button class="btn btn-primary" ng-click="onSettingsSave"><span class="fa fa-save"></span> {{"Save settings"|lang}}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr/>
+        <div class="block">
+            <h4>{{"Password change"|lang}}</h4>
+            <div class="row clearfix">
+                <form name="passwordForm" class="col-md-5 col-md-offset-3" ng-submit="passwordChangeFormSubmit(passwordForm, passwordFormModel)">
+                    <div class="form-group">
+                        <label class="control-label" for="oldPassword">{{"Old Password"|lang}}</label>
+                        <input type="password"
+                               class="form-control"
+                               id="oldPassword"
+                               name="oldPassword"
+                               ng-model="passwordFormModel.oldPassword"
+                               placeholder="{{ 'Enter old password'|lang }}"
+                               rdr-validation-remote
+                               ng-minlength="6"
+                               ng-maxlength="255"
+                               required />
+                        <ul class="errors" ng-show="passwordForm.$submitted || passwordForm.oldPassword.$dirty">
+                            <li class="error" ng-show="passwordForm.oldPassword.$error.invalidOldPassword">{{"Invalid old password"|lang}}</li>
+                            <li class="error" ng-show="passwordForm.oldPassword.$error.minlength">{{"Password is required to be at least 6 characters"|lang}}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="newPassword">{{"New Password"|lang}}</label>
+                        <input type="password"
+                               class="form-control"
+                               id="newPassword"
+                               name="newPassword"
+                               ng-model="passwordFormModel.newPassword"
+                               placeholder="{{ 'Enter new password'|lang }}"
+                               ng-minlength="6"
+                               ng-maxlength="255"
+                               required />
+                        <ul class="errors" ng-show="passwordForm.$submitted || passwordForm.newPassword.$dirty">
+                            <li class="error" ng-show="passwordForm.newPassword.$error.required">{{"Required field"|lang}}</li>
+                            <li class="error" ng-show="passwordForm.newPassword.$error.minlength">{{"Password is required to be at least 6 characters"|lang}}</li>
+                            <li class="error" ng-show="passwordForm.newPassword.$error.maxlength">{{"Password cannot be longer than 255 character"|lang}}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="confirmNewPassword">{{"Confirm New Password"|lang}}</label>
+                        <input type="password"
+                               class="form-control"
+                               id="confirmNewPassword"
+                               name="confirmNewPassword"
+                               placeholder="{{ 'Enter new password again'|lang }}"
+                               ng-model="passwordFormModel.confirmNewPassword"
+                               rdr-validation-equals-with="passwordFormModel.newPassword"
+                               required />
+                        <ul class="errors" ng-show="passwordForm.$submitted || passwordForm.confirmNewPassword.$dirty">
+                            <li class="error" ng-show="passwordForm.confirmNewPassword.$error.required">{{"Required field"|lang}}</li>
+                            <li class="error" ng-show="passwordForm.confirmNewPassword.$error.equals">{{"Passwords must be equals"|lang}}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn btn-primary" ng-click="onPasswordChange()">{{"Change password"|lang}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr/>
+        <div class="block">
+            <h4>{{"System settings"|lang}}</h4>
+            <div class="row clearfix">
+                <form name="sysSettingsForm" class="col-md-5 col-md-offset-3" ng-submit="onSysSettingsChange(sysSettingsModel)">
+                    <div class="form-group">
+                        <label class="control-label" for="oldPassword">{{"Language"|lang}}</label>
+                        <select name="sysLanguage" class="form-control" id="sys-language" ng-options="key as value for (key, value) in availableLanguages"  ng-model="sysSettingsModel.language">
+                        </select>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">{{"Change settings"|lang}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

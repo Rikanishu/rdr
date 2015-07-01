@@ -1,0 +1,38 @@
+<div class="signin-profile-background">
+    <div class="modal-dialog">
+        <div class="modal-content modal-sign-in">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">{{"Sign in"|lang}}</h4>
+            </div>
+            <form id="signInForm"
+                  name="signInForm"
+                  ng-submit="signInAction()">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="signInForm_Login">{{"Login / email"|lang}}</label>
+                        <input type="text"
+                               class="form-control"
+                               id="signInForm_Login"
+                               placeholder="{{'Enter your login'|lang}}"
+                               ng-model="signIn.login" />
+                    </div>
+                    <div class="form-group">
+                        <label for="signInForm_Password">{{"Password"|lang}}</label>
+                        <input type="password"
+                               class="form-control"
+                               id="signInForm_Password"
+                               placeholder="{{'Enter password'|lang}}"
+                               ng-model="signIn.password" />
+                    </div>
+                    <p class="signin-error" ng-show="signInError">
+                        {{signInError|lang}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <!-- button type="button" class="btn btn-default" ng-click="onBackClick()">Back</button -->
+                    <button id="signInSubmitButton" type="submit" class="btn btn-success">{{"Sign in"|lang}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

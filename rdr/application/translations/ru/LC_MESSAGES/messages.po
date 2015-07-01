@@ -1,0 +1,516 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2015 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+#
+
+# Example of plural forms
+# msgid "You have %(apples)d apple"
+# msgid_plural "You have %(apples)d apples"
+# msgstr[0] "У вас %(apples)d яблоко"
+# msgstr[1] "У вас %(apples)d яблока"
+# msgstr[2] "У вас %(apples)d яблок"
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2015-03-07 08:02+0300\n"
+"PO-Revision-Date: 2015-03-07 08:02+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "This email is already taken."
+msgstr "Этот адрес электронной почты уже занят."
+
+msgid "Reader"
+msgstr "Reader"
+
+msgid "Toggle navigation"
+msgstr "Переключение навигации"
+
+msgid "Sign in"
+msgstr "Вход"
+
+msgid "Sign up"
+msgstr "Регистрация"
+
+msgid "Enter your email"
+msgstr "Введите адрес электронной почты"
+
+msgid "Enter display name"
+msgstr "Введите имя пользователя"
+
+msgid "Enter password"
+msgstr "Введите пароль"
+
+msgid "Confirm password"
+msgstr "Подтверждение пароля"
+
+msgid "Use this form for create new account"
+msgstr "Создание нового аккаунта"
+
+msgid "Email"
+msgstr "Адрес электронной почты"
+
+msgid "Required field"
+msgstr "Обязательное поле"
+
+msgid "Invalid email"
+msgstr "Неверный формат"
+
+msgid "Email already taken"
+msgstr "Этот адрес электронной почты уже занят"
+
+msgid "Display Name"
+msgstr "Имя пользователя"
+
+msgid "Username is required to be at least 3 characters"
+msgstr "Минимальная длина имени пользователя - 3 символа"
+
+msgid "Username cannot be longer than 255 character"
+msgstr "Максимальная длина имени пользователя - 255 символов"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Password is required to be at least 6 characters"
+msgstr "Минимальная длина пароля - 6 символов"
+
+msgid "Password cannot be longer than 255 character"
+msgstr "Максимальная длина пароля - 255 символов"
+
+msgid "Password Confirm"
+msgstr "Подтверждение пароля"
+
+msgid "Passwords must be equals"
+msgstr "Пароли должны совпадать"
+
+msgid "Login / email"
+msgstr "Логин / эл. почта"
+
+msgid "undefined"
+msgstr "undefined"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Sign out"
+msgstr "Выход"
+
+msgid "Text for search"
+msgstr "Текст для поиска"
+
+msgid "Loading..."
+msgstr "Загрузка..."
+
+msgid "Please wait while application loading"
+msgstr "Пожалуйста, подождите"
+
+msgid "Add new feed"
+msgstr "Добавить подписки"
+
+msgid "Subscribe packages"
+msgstr "Пакеты подписок"
+
+msgid "Stats"
+msgstr "Статистика"
+
+msgid "Unread news"
+msgstr "Непрочитанные статьи"
+
+msgid "Favorites"
+msgstr "Избранное"
+
+msgid "New folder"
+msgstr "Новая папка"
+
+msgid "Drop package for new subscribe"
+msgstr "Переместите сюда источник для подписки"
+
+msgid "Manage subscribes"
+msgstr "Редактирование подписок"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Search in"
+msgstr "Искать во"
+
+msgid "All articles"
+msgstr "Всех статьях"
+
+msgid "Read only"
+msgstr "Только в прочитанных"
+
+msgid "Unread only"
+msgstr "Только в непрочитанных"
+
+msgid "Favorites only"
+msgstr "Только в избранном"
+
+msgid "Include"
+msgstr "Включить в поиск"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Announce"
+msgstr "Описание"
+
+msgid "Article text"
+msgstr "Текст статьи"
+
+msgid "Welcome back, {0}!"
+msgstr "Привет, {0}!"
+
+msgid "Selected feed is loading"
+msgstr "Выбранный источник загружается"
+
+msgid "Please wait while articles are loading"
+msgstr "Пожалуйста, подождите пока загружаются статьи"
+
+msgid "Please wait while we retrieve full article text"
+msgstr "Пожалуйста, подождите пока мы загружаем полный текст статьи"
+
+msgid "Read count"
+msgstr "Количество просмотров"
+
+msgid "Favorites count"
+msgstr "Количество добавлений в Избранное"
+
+msgid "Open link"
+msgstr "Открыть ссылку"
+
+msgid "Add to favorites"
+msgstr "Добавить в Избранное"
+
+msgid "Subscribe"
+msgstr "Подписаться"
+
+msgid "Mark all as read"
+msgstr "Отметить все как прочитанное"
+
+msgid "No any news at the moment"
+msgstr "Пока никаких новостей нет"
+
+msgid "Show full article"
+msgstr "Просмотр статьи"
+
+msgid "You have {0} subscriptions. In the last 30 days {1} articles was published of which you read {2} articles and added to favorites {3} articles. "
+msgstr "У вас {0} подписок. За посление 30 дней было опубликовано {1} статей, из которых вы прочитали {2} статей и добавили в избранное {3} статей"
+
+msgid "Reading stats"
+msgstr "Статистика просмотров"
+
+msgid "Feed"
+msgstr "Источник"
+
+msgid "# read articles"
+msgstr "Кол-во просмотренных статей"
+
+msgid "%% read articles"
+msgstr "%% просмотренных статей"
+
+msgid "Subscription stats"
+msgstr "Статистика публикаций"
+
+msgid "Published articles"
+msgstr "Опубликовано статей"
+
+msgid "Items per day"
+msgstr "Статей в день"
+
+msgid "Search feeds"
+msgstr "Поиск источников"
+
+msgid "Popular packages"
+msgstr "Популярные подписки"
+
+msgid "This is some of most popular feeds among our users."
+msgstr "Ниже представлены некоторые из самых популярных источников среди пользователей, на которые вы еще не подписаны."
+
+msgid "For subscribing just drop package to your subscribes side block."
+msgstr "Для того чтобы подписаться просто переместите источник в раздел подписок слева."
+
+msgid "Subscribers"
+msgstr "Подписки"
+
+msgid "You already subscribed."
+msgstr "Вы уже подписаны."
+
+msgid "Packages not found"
+msgstr "Источники не найдены"
+
+msgid "Packages"
+msgstr "Источники"
+
+msgid "Found {0} packages"
+msgstr "Найдено {0} источников."
+
+msgid "Drag packages to your folder to start reading"
+msgstr "Переместите источник в в раздел подписок чтобы начать читать."
+
+msgid "Enter old password"
+msgstr "Введите старый пароль"
+
+msgid "Enter new password"
+msgstr "Введите новый пароль"
+
+msgid "Enter new password again"
+msgstr "Введите новый пароль еще раз"
+
+msgid "User image"
+msgstr "Изображение"
+
+msgid "Upload"
+msgstr "Загрузить"
+
+msgid "Invalid image format"
+msgstr "Неподдерживаемый формат изображения"
+
+msgid "Email completed successfully."
+msgstr "Адрес электронной почты подтвержден."
+
+msgid "Email has not confirmed yet."
+msgstr "Адрес электронной почты еще не подтвержден."
+
+msgid "Save settings"
+msgstr "Сохранить"
+
+msgid "Old Password"
+msgstr "Старый пароль"
+
+msgid "Invalid old password"
+msgstr "Неверный старый пароль"
+
+msgid "New Password"
+msgstr "Новый пароль"
+
+msgid "Confirm New Password"
+msgstr "Подтвердите новый пароль"
+
+msgid "Change password"
+msgstr "Смена пароля"
+
+msgid "Subscriptions import / export"
+msgstr "Импорт / экспорт подписок"
+
+msgid "You can use special OPML format file to export / import your subscriptions"
+msgstr "С помощью файлов специального формата OPML вы можете экспортировать / импортировать ваш список подписок"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "Export"
+msgstr "Экспорт"
+
+msgid "Manage Subscribes"
+msgstr "Редактирование подписок"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Subscribes"
+msgstr "Подписки"
+
+msgid "Drop subscription to move it here"
+msgstr "Бросьте подписку здесь для пермещения"
+
+msgid "Folders"
+msgstr "Папки"
+
+msgid "Add new folder"
+msgstr "Добавить новую папку"
+
+msgid "All subscriptions is in folders"
+msgstr "Все подписки размещены в папках"
+
+msgid "Search Criteria"
+msgstr "Критерии поиска"
+
+msgid "Search Results"
+msgstr "Результаты поиска"
+
+msgid "No any search results"
+msgstr "Результатов нет"
+
+msgid "Enter your login"
+msgstr "Введите логин"
+
+msgid "Enter password"
+msgstr "Введите пароль"
+
+msgid "Read articles"
+msgstr "Прочитанных статей"
+
+msgid "Write articles"
+msgstr "Опубликованных статей"
+
+msgid "Read {0} users"
+msgstr "Читают {0} пользователей"
+
+msgid "You can add new feed via this form or select form popular / provided feeds"
+msgstr "Вы можете добавить новые источники новостей воспользовавшись поиском, или выбрать что-нибудь по вкусу среди популярных подписок."
+
+msgid "Enter feed url / keywords"
+msgstr "Введите URL / название сайта"
+
+msgid "Remove from favorites"
+msgstr "Удалить из Избранного"
+
+msgid "Search in feed {0}"
+msgstr "Поиск в {0}"
+
+msgid "Undo {0}"
+msgstr "Отменить {0}"
+
+msgid "Subscription delete"
+msgstr "Удаление подписки"
+
+msgid "Folder delete"
+msgstr "Удаление папки"
+
+msgid "Look! This is most popular news since your last visit."
+msgstr "Вот самые популярные новости с момента твоего последнего визита:"
+
+msgid "Subscriptions are loading"
+msgstr "Подписки загружаются"
+
+msgid "Mon"
+msgstr "Пн"
+
+msgid "Tue"
+msgstr "Вт"
+
+msgid "Wed"
+msgstr "Ср"
+
+msgid "Thu"
+msgstr "Чт"
+
+msgid "Fri"
+msgstr "Пт"
+
+msgid "Sat"
+msgstr "Сб"
+
+msgid "Sun"
+msgstr "Вс"
+
+msgid "just now"
+msgstr "прямо сейчас"
+
+msgid "%(days)d day ago"
+msgid_plural "%(days)d days ago"
+msgstr[0] "%(days)d день назад"
+msgstr[1] "%(days)d дня назад"
+msgstr[2] "%(days)d дней назад"
+
+msgid "%(seconds)d second ago"
+msgid_plural "%(seconds)d seconds ago"
+msgstr[0] "%(seconds)d секунду назад"
+msgstr[1] "%(seconds)d секунды назад"
+msgstr[2] "%(seconds)d секунд назад"
+
+msgid "%(minutes)d minute ago"
+msgid_plural "%(minutes)d minutes ago"
+msgstr[0] "%(minutes)d минуту назад"
+msgstr[1] "%(minutes)d минуты назад"
+msgstr[2] "%(minutes)d минут назад"
+
+msgid "%(hours)d hour ago"
+msgid_plural "%(hours)d hours ago"
+msgstr[0] "%(hours)d час назад"
+msgstr[1] "%(hours)d часа назад"
+msgstr[2] "%(hours)d часов назад"
+
+msgid "Profile data"
+msgstr "Данные пользователя"
+
+msgid "Password change"
+msgstr "Смена пароля"
+
+msgid "System settings"
+msgstr "Системные настройки"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Change settings"
+msgstr "Изменить"
+
+msgid "Import / Export"
+msgstr "Импорт / экспорт"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Add unread to offline read queue"
+msgstr "Отправить непрочитанные для оффлайн-чтения"
+
+msgid "Unsubscribe"
+msgstr "Удалить подписку"
+
+msgid "Offline read queue"
+msgstr "Оффлайн-чтение"
+
+msgid "Add articles to queue to save it for offline reading."
+msgstr "Добавляйте статьи в очередь чтобы сохранить их для чтения в оффлайне."
+
+msgid "Articles for user"
+msgstr "Статьи пользователя"
+
+msgid "Original"
+msgstr "Оригинал"
+
+msgid "Generation process..."
+msgstr "Генерация файла..."
+
+msgid "Please wait while file is generated."
+msgstr "Пожалуйста, подождите пока генерируется файл."
+
+msgid "Save articles to read offline"
+msgstr "Добавляйте статьи в очередь чтобы сохранить их для чтения в оффлайне."
+
+msgid "Save to"
+msgstr "Сохранить в"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Save to Dropbox"
+msgstr "Сохранить в Dropbox"
+
+msgid "File format"
+msgstr "Формат файла"
+
+msgid "Clear queue"
+msgstr "Очистить очередь"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "To offline read queue"
+msgstr "В очередь для оффлайн-чтения"
+
+msgid "articles"
+msgstr "статей"
+
+msgid "Login and password required"
+msgstr "Введите логин и пароль"
+
+msgid "Invalid login or password"
+msgstr "Неправильный логин или пароль"

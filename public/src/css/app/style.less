@@ -1,0 +1,170 @@
+@import "common.less";
+
+/* ========== Main =========== */
+
+@x-min-width: 900px;
+
+html {
+    height:100%;
+    position:relative
+}
+
+body {
+  font-family: "PT Sans", "Helvetica Neue", Helvetica, sans-serif;
+  height: 100%;
+  color: #333;
+  font-size: 14px;
+  min-width: @x-min-width;
+}
+
+h1, h2, h3, h4 {
+  font-family: "PT Sans Narrow", "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.ng-cloak {
+    visibility: hidden;
+}
+
+#header {
+  .clearfix();
+}
+
+#headerViewContainer {
+  .clearfix();
+}
+
+
+/* Navbar */
+#headerNavBar {
+  margin-bottom: 0;
+  /*height: 50px; */
+  min-width: @x-min-width;
+
+  .signup-buttons {
+    margin-right: 10px;
+  }
+
+  .navbar-nav {
+    margin: 0 10px;
+    display: inline-block;
+    float: none;
+  }
+
+  .navbar-header {
+    float: left;
+  }
+
+  .navbar-nav-panel {
+    float: right;
+    min-width: 220px;
+    text-align: center;
+  }
+
+}
+
+#content {
+  height: 100%;
+  padding-top: 50px;
+
+  /* user signout page */
+  > .signout {
+    height: 100%;
+  }
+
+}
+
+.page-container {
+  height: 100%;
+}
+
+.signin-profile-background,
+.signup-profile-background {
+  /*border-top: 5px solid black;*/
+  background: url('/static/img/textures/stardust.png') repeat;
+  height: 100%;
+  padding-top: 2%;
+  overflow: auto;
+}
+
+.icon-link .glyphicon,
+.icon-link .fa {
+  margin-right: 5px;
+}
+
+.rdr-logo {
+  padding: 2px;
+}
+
+.modal-sign-in {
+    width: 300px;
+    margin: auto;
+}
+
+.modal-sign-in .modal-body {
+    padding: 10px;
+}
+
+.rdr-loading-overlay {
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    top: 40%;
+}
+
+.navbar {
+
+  .profile-container {
+    .clearfix();
+
+    .user-image {
+
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+
+      float: left;
+      overflow: hidden;
+      padding: 4px;
+      margin: 2px;
+      border: 1px solid #dddddd;
+      border-radius: 50%;
+    }
+
+    .profile-link {
+      display: block;
+      float: left;
+      padding: 12px 12px 5px 5px ;
+    }
+  }
+
+}
+
+.navbar.navbar-standard {
+  border-bottom: 2px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.smooth-opacity-start {
+    opacity: 0;
+    -moz-transition: opacity 0.6s ease;
+    -o-transition: opacity 0.6s ease;
+    -webkit-transition: opacity 0.6s ease;
+    transition: opacity 0.6s ease;
+}
+
+.smooth-opacity-end {
+    opacity: 1;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.form-group .error, .signin-error {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #C53234;
+}

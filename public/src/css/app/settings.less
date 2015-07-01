@@ -1,0 +1,89 @@
+@import "common.less";
+
+/* Profile settings */
+.profile-settings-form {
+
+
+  @media (min-width: 700px) {
+    margin: auto;
+    width: 700px;
+  }
+
+  .profile-data {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .control-label {
+    font-weight: bold;
+  }
+
+  .email-confirmation-status {
+    font-size: 0.8em;
+    color: #333;
+
+    > .success-icon {
+      color: #3EFD71;
+    }
+
+    > .failed-icon {
+      color: #C53234;
+    }
+
+  }
+
+  .photo-container {
+    text-align: center;
+
+    .image {
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 5px;
+
+      > img {
+        width: 120px;
+        height: 120px;
+      }
+
+    }
+
+    .file-input {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+  }
+
+  .settings-form-actions {
+    margin-top: 25px;
+    text-align: right;
+  }
+
+  .email-group {
+
+    .email-confirmation-status {
+      margin-left: 5px;
+    }
+
+  }
+
+  .subscriptions-import-export {
+    .make-row();
+    .clearfix();
+
+     img {
+       display: inline-block;
+     }
+
+    .import {
+      .make-all-columns(6);
+    }
+
+    .export {
+      .make-all-columns(6);
+    }
+
+  }
+
+}

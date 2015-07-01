@@ -1,0 +1,57 @@
+<div class="modal-body">
+    <div class="article-preview-modal" rdr-loading="isLoading">
+        <div class="header row">
+            <div class="title">
+                <a href="{{readArticle.article.link}}" target="_blank" ng-show="readArticle.article.link">
+                    {{readArticle.article.title}}
+                </a>
+            </div>
+            <div class="close-button">
+                <a href="#" class="close-button" ng-click="onClose($event)"><span class="fa fa-times-circle"></span></a>
+            </div>
+        </div>
+        <hr class="header-border" />
+        <div class="body"
+             rdr-loading="isReadArticleLoad"
+             rdr-loading-message="{{'Please wait while we retrieve full article text'|lang}}">
+            <div class="image" ng-show="readArticle.fullText.imageUrl">
+                <img class="img-responsive" ng-src="{{readArticle.fullText.imageUrl}}" />
+                <hr/>
+            </div>
+            <div class="actions-bar clearfix">
+                <div class="date">
+                        <span class="feed-icon">
+                            <img ng-src="{{readArticle.article.feed.smallIconSrc}}" ng-if="readArticle.article.feed.smallIconSrc">
+                        </span>
+                    <span class="feed-name">{{readArticle.article.feed.title|cut:30}}</span> | {{readArticle.article.elapsedDate}}
+                </div>
+                <div class="actions">
+                    <div class="buttons">
+                        <a href="{{readArticle.article.link}}" target="_blank" class="btn btn-primary" ng-show="readArticle.article.link">
+                            <span class="fa fa-external-link-square"></span> {{"Open link"|lang}}
+                        </a>
+                        <a href="#" class="btn btn-default" ng-click="onAddToFavorites(readArticle.article, $event)">
+                            <span ng-if="!readArticle.article.isInFavorites">
+                                <span class="fa fa-star-o"></span> {{"Add to favorites"|lang}}
+                            </span>
+                            <span ng-if="readArticle.article.isInFavorites">
+                                <span class="fa fa-star"></span> {{"Remove from favorites"|lang}}
+                            </span>
+                        </a>
+                    </div>
+                    <div class="stats">
+                        <span class="counts views-count" title="{{'Read count'|lang}}">
+                            <span class="fa fa-eye"></span> {{readArticle.article.viewsCount}}
+                        </span>
+                        <span class="counts favs-count" title="{{'Favorites count'|lang}}">
+                            <span class="fa fa-star"></span> {{readArticle.article.favoritesCount}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="text" ng-bind-html="readArticle.fullText.text">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+*.pyc
+*.db
+.idea/
+.vagrant/
+*.iml
+.DS_Store
+public/build/*
+Makefile
+celerybeat.pid
+celerybeat-schedule
+uwsgi.ini
+uwsgi-dev.ini

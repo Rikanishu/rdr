@@ -1,0 +1,99 @@
+<h3>
+    {{"Stats"|lang}}
+</h3>
+<div class="stats-block-container" rdr-loading="isLoading">
+    <div class="stats-block clearfix">
+        <div class="text-stats-data">
+            {{"You have {0} subscriptions. In the last 30 days {1} articles was published of which you read {2} articles and added to favorites {3} articles. "|lang:subscriptionsCount:publishedCount:readCount:favCount}}
+        </div>
+        <div class="graphs">
+            <div class="chart-container">
+                <div nvd3-multi-bar-chart
+                     class="feed-stats"
+                     id="feeds-graph"
+                     data="statsGraphs[0].data"
+                     width="600"
+                     height="150"
+                     showXAxis="true"
+                     showYAxis="true"
+                     showLegend="true"
+                     interactive="true"
+                     tooltips="true"
+                     tooltipcontent="statsTooltip"
+                     noData="No data for graph">
+                    <svg></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tables">
+        <div class="reading-table">
+            <h4>{{"Reading stats"|lang}}</h4>
+            <table class="table table-striped table-condensed table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                        {{"Feed"|lang}}
+                    </th>
+                    <th>
+                        {{"# read articles"|lang}}
+                    </th>
+                    <th>
+                        {{"% read articles"|lang}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in readingTable">
+                    <td>
+                        <img class="subscribe-icon" ng-src="{{::row.icon}}" /><a ui-sref="home.showFeed({feedId: row.id})" href="#" class="subscribe-link"><span class="subscribe-title">{{::row.title}}</span></a>
+                    </td>
+                    <td>
+                        {{::row.read_count}}
+                    </td>
+                    <td>
+                        {{::row.read_percent}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="subscription-table">
+            <h4>{{"Subscription stats"|lang}}</h4>
+            <table class="table table-striped table-condensed table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                        {{"Feed"|lang}}
+                    </th>
+                    <th>
+                        {{"Published articles"|lang}}
+                    </th>
+                    <th>
+                        {{"Items per day"|lang}}
+                    </th>
+                    <th>
+                        {{"% read articles"|lang}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in subscriptionsTable">
+                    <td>
+                        <img class="subscribe-icon" ng-src="{{::row.icon}}" /><a ui-sref="home.showFeed({feedId: row.id})" href="#" class="subscribe-link"><span class="subscribe-title">{{::row.title}}</span></a>
+                    </td>
+                    <td>
+                        {{::row.published_count}}
+                    </td>
+                    <td>
+                        {{::row.items_per_day}}
+                    </td>
+                    <td>
+                        {{::row.read_percent}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

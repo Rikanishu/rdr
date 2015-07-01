@@ -1,0 +1,126 @@
+/* ========== Common mixins =========== */
+.feeds-content .manage-subscribes .root-subscribes:before,
+.feeds-content .manage-subscribes .root-subscribes:after {
+  content: " ";
+  display: table;
+}
+.feeds-content .manage-subscribes .root-subscribes:after {
+  clear: both;
+}
+.feeds-content .manage-subscribes .root-subscribes .items-container {
+  overflow: hidden;
+  min-height: 60px;
+}
+.feeds-content .manage-subscribes .root-subscribes .items-container > .empty-drag-zone {
+  display: none;
+}
+.feeds-content .manage-subscribes .root-subscribes .items-container.drag-enter > .empty-drag-zone {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+.feeds-content .manage-subscribes .root-subscribes .items-container.drag-enter > .empty-drag-zone.drag-enter {
+  background: #ddd;
+}
+.feeds-content .manage-subscribes .root-subscribes .items-container .empty-subscriptions {
+  text-align: center;
+}
+.feeds-content .manage-subscribes .manage-subscribe-item {
+  display: inline-block;
+  cursor: pointer;
+  width: 250px;
+  margin: 5px;
+  border: 1px solid #000000;
+  padding: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  background: #ffffff;
+  position: relative;
+}
+.feeds-content .manage-subscribes .manage-subscribe-item .subscribe-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.feeds-content .manage-subscribes .manage-subscribe-item .subscribe-title {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 180px;
+  overflow: hidden;
+}
+.feeds-content .manage-subscribes .manage-subscribe-item .remove {
+  cursor: pointer;
+  opacity: 0.8;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.feeds-content .manage-subscribes .folders:before,
+.feeds-content .manage-subscribes .folders:after {
+  content: " ";
+  display: table;
+}
+.feeds-content .manage-subscribes .folders:after {
+  clear: both;
+}
+.feeds-content .manage-subscribes .folders > .controls {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item {
+  width: 280px;
+  border: 1px solid #333333;
+  margin: 5px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .header {
+  height: 36px;
+  color: #ffffff;
+  padding: 5px;
+  background: #333333;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .header > .name {
+  display: inline-block;
+  padding: 2px;
+  font-weight: bold;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .header > .name-change {
+  color: #000000;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .header > .name-change > form {
+  display: inline-block;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .header > .name-change > form > input {
+  width: 200px;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .header > .remove {
+  margin-right: 5px;
+  cursor: pointer;
+  opacity: 0.8;
+  display: inline-block;
+  float: right;
+  margin-top: 4px;
+  vertical-align: middle;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .body {
+  padding: 5px;
+  min-height: 60px;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .body > .empty-drag-zone {
+  display: none;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .body.drag-enter > .empty-drag-zone {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+.feeds-content .manage-subscribes .folders .manage-subscribe-folder-item > .body.drag-enter > .empty-drag-zone.drag-enter {
+  background: #ddd;
+}

@@ -1,0 +1,21 @@
+<div class="profile-settings-form">
+
+    <div class="heading">
+        <h3>{{"Subscriptions import / export"|lang}}</h3>
+    </div>
+    <p>
+        {{"You can use special OPML format file to export / import your subscriptions"|lang}}
+    </p>
+    <hr/>
+    <div class="subscriptions-import-export" rdr-loading="isSubscriptionLoading" rdr-loading-message="{{'Subscriptions are loading'|lang}}">
+        <div class="import">
+            <img src="/static/img/common/cloud-128x128.png" alt="Import"/>
+            <div upload-button class="btn btn-upload btn-success" url="/subscribes/import" accept="text/x-opml+xml" multiple="false" on-upload="onSubscriptionsUploadStart()" on-success="onSubscriptionsUploadComplete(response)" >{{"Import"|lang}}</div>
+        </div>
+        <div class="export">
+            <img src="/static/img/common/disk-128x128.png" alt="Export"/>
+            <a href="/subscribes/export" target="_blank" class="btn btn-warning">{{"Export"|lang}}</a>
+        </div>
+    </div>
+
+</div>

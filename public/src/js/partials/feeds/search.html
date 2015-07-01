@@ -1,0 +1,163 @@
+<div class="feeds-container-overlay search-results"
+     rdr-loading="pageLoading" rdr-loading-message="{{ 'Selected feed is loading'|lang }}">
+    <div class="feed-header clearfix">
+        <div class="title">
+            <span class="feed-name" ng-if="!isSearchForFeed">
+                {{ "Search Results"|lang }}
+            </span>
+             <span class="feed-name" ng-if="isSearchForFeed">
+                {{ "Search in feed {0}"|lang:feed.title }}
+            </span>
+        </div>
+    </div>
+    <div class="search-blocks">
+        <div class="search-results-container">
+            <div class="row feed-body-container" ng-show="feed.articles.length"  rdr-loading="articlesLoading">
+                <div class="articles search-results fixed-container without-preview"
+                     rdr-on-reach-scroll-bottom="loadMore()">
+                    <div class="articles-list">
+                        <div class="article-item clearfix" ng-class="{read: article.isRead}" ng-repeat="article in feed.articles" rdr-visible="!article._isNotVisible">
+                            <div class="short" ng-if="!article._isExpanded" ng-click="onArticleExpand(article)">
+                                <div class="heading clearfix">
+                                    <span class="text-line">
+                                        <span class="title" ng-bind-html="::article.title|highlight:query">
+                                        </span>
+                                        <span class="short-text">
+                                            {{ ::article.text|cut:120 }}
+                                        </span>
+                                    </span>
+
+                                    <span class="date">
+                                        {{ ::article.elapsedDate }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="middle" ng-if="article._isExpanded">
+                                <div class="heading clearfix">
+                                    <span class="text-line">
+                                        <span class="title">
+                                            <a class="open-url-link" target="_blank" href="{{::article.link}}" ng-bind-html="::article.title|highlight:query">{{  }}</a>
+                                        </span>
+                                    </span>
+                                    <span class="date">
+                                        {{ ::article.elapsedDate }}
+                                    </span>
+                                </div>
+                                <div class="article-body">
+                                    <div class="article-info">
+                                        <span class="feed-icon">
+                                            <img ng-src="{{::article.feed.smallIconSrc}}" ng-if="::article.feed.smallIconSrc">
+                                        </span>
+                                        <span class="feed-name">
+                                            <a class="feed-url-link" target="_blank" href="{{::article.feed.url}}" ng-if="::article.feed.url">{{::article.feed.title|cut:60}}</a>
+                                            <span ng-if="::!article.feed.url">{{::article.feed.title|cut:60}}</span>
+                                        </span>
+                                        <span class="full-publication-date"> | {{::article.elapsedDate}}</span>
+                                        <span class="author" ng-if="::article.author"> | {{::article.author|cut:200}}</span>
+                                    </div>
+                                    <div class="text">
+                                        <div class="article-image" rdr-bg-img="{{::article.imageUrl}}" ng-show="::article.imageUrl"></div>
+                                        <p class="bind-text" ng-bind-html="::article.text|highlight:query">
+
+                                        </p>
+                                    </div>
+                                    <div class="controls">
+                                        <div class="buttons">
+                                            <a href="{{::article.link}}" target="_blank" class="btn btn-primary" ng-show="::article.link">
+                                                <span class="fa fa-external-link-square"></span> {{"Open link"|lang}}
+                                            </a>
+                                            <a href="#" class="btn btn-default" ng-click="onReadArticle(article, $event)">
+                                                <span class="fa fa-book"></span> {{"Show full article"|lang}}
+                                            </a>
+                                            <a href="#" class="btn btn-default" ng-click="onAddToFavorites(article, $event)">
+                                                <span ng-if="!readArticle.article.isInFavorites">
+                                                    <span class="fa fa-star-o"></span> {{"Add to favorites"|lang}}
+                                                </span>
+                                                <span ng-if="readArticle.article.isInFavorites">
+                                                    <span class="fa fa-star"></span> {{"Remove from favorites"|lang}}
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loading-more-articles"
+                             rdr-loading="pageLoad"
+                             rdr-loading-message="{{'Please wait while articles are loading'|lang}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="empty-feed" ng-show="!feed.articles.length">
+                <div class="placeholder">
+                    <div class="image">
+                        <img src="/static/img/feeds/paper-128x128.png" />
+                    </div>
+                    <div class="text" ng-if="!isFavorites">
+                        {{'No any search results'|lang}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-form">
+            <div class="search clearfix">
+                <h4>{{"Search Criteria"|lang}}</h4>
+                <form name="searchForm" class="navbar-form feeds-search-form" role="search" ng-submit="onSearchFormSubmit($event)">
+                    <div class="text-container">
+                        <div class="form-group">
+                            <input type="text" name="text" class="form-control" placeholder="{{'Text for search'|lang}}"
+                                   ng-model="searchFormModel.query"/>
+                        </div>
+                        <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> {{'Search'|lang}}</button>
+                    </div>
+                    <div class="row">
+                        <div class="options-container col-md-6">
+                            <p>
+                                {{'Search in'|lang}}:
+                            </p>
+                            <div class="search-type">
+                                <div class="radio">
+                                    <input type="radio" name="searchIn" value="all"
+                                           ng-model="searchFormModel.searchIn" /> {{'All articles'|lang}}
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="searchIn" value="read"
+                                           ng-model="searchFormModel.searchIn" /> {{'Read only'|lang}}
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="searchIn" value="unread"
+                                           ng-model="searchFormModel.searchIn" /> {{'Unread only'|lang}}
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="searchIn" value="fav"
+                                           ng-model="searchFormModel.searchIn" /> {{'Favorites only'|lang}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="options-container col-md-6">
+                            <p>
+                                {{'Include'|lang}}:
+                            </p>
+                            <div class="search-in">
+                                <div class="checkbox-row">
+                                    <input type="checkbox" name="include" value="all"
+                                           ng-model="searchFormModel.include.title" /> {{'Title'|lang}}
+                                </div>
+                                <div class="checkbox-row">
+                                    <input type="checkbox" name="include" value="read"
+                                           ng-model="searchFormModel.include.announce" /> {{'Announce'|lang}}
+                                </div>
+                                <div class="checkbox-row">
+                                    <input type="checkbox" name="include" value="unread"
+                                           ng-model="searchFormModel.include.text" /> {{'Article text'|lang}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

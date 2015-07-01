@@ -1,0 +1,116 @@
+/* ========== Common mixins =========== */
+/* Profile settings */
+@media (min-width: 700px) {
+  .profile-settings-form {
+    margin: auto;
+    width: 700px;
+  }
+}
+.profile-settings-form .profile-data {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.profile-settings-form .control-label {
+  font-weight: bold;
+}
+.profile-settings-form .email-confirmation-status {
+  font-size: 0.8em;
+  color: #333;
+}
+.profile-settings-form .email-confirmation-status > .success-icon {
+  color: #3EFD71;
+}
+.profile-settings-form .email-confirmation-status > .failed-icon {
+  color: #C53234;
+}
+.profile-settings-form .photo-container {
+  text-align: center;
+}
+.profile-settings-form .photo-container .image {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.profile-settings-form .photo-container .image > img {
+  width: 120px;
+  height: 120px;
+}
+.profile-settings-form .photo-container .file-input {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.profile-settings-form .settings-form-actions {
+  margin-top: 25px;
+  text-align: right;
+}
+.profile-settings-form .email-group .email-confirmation-status {
+  margin-left: 5px;
+}
+.profile-settings-form .subscriptions-import-export {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.profile-settings-form .subscriptions-import-export:before,
+.profile-settings-form .subscriptions-import-export:after {
+  content: " ";
+  display: table;
+}
+.profile-settings-form .subscriptions-import-export:after {
+  clear: both;
+}
+.profile-settings-form .subscriptions-import-export img {
+  display: inline-block;
+}
+.profile-settings-form .subscriptions-import-export .import {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .profile-settings-form .subscriptions-import-export .import {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .profile-settings-form .subscriptions-import-export .import {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 1200px) {
+  .profile-settings-form .subscriptions-import-export .import {
+    float: left;
+    width: 50%;
+  }
+}
+.profile-settings-form .subscriptions-import-export .export {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .profile-settings-form .subscriptions-import-export .export {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .profile-settings-form .subscriptions-import-export .export {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 1200px) {
+  .profile-settings-form .subscriptions-import-export .export {
+    float: left;
+    width: 50%;
+  }
+}

@@ -56,7 +56,8 @@ pip install --ignore-installed -r requirements.txt
 Babel compile message
 ``pybabel compile -d rdr/application/translations/```
 
-===========================================================
+---
+
 Celery run
 ```celery worker -A rdr.tasks.celery -l info -P prefork -c 16```
 

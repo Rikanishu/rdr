@@ -27,7 +27,7 @@ Also you can use included Vagrantfile for instant deploying of development envir
   apt-get install -q -y wkhtmltopdf
   ```
 
-2. *(Optional)* Download and install ElasticSearch search engine for content indexing. Application uses database SQL LIKE search by default and you can skip this step if you don't want to use separated search engine.
+2. **(Optional)** Download and install ElasticSearch search engine for content indexing. Application uses database SQL LIKE search by default and you can skip this step if you don't want to use separated search engine.
 
   ```
   wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.1.deb
@@ -38,7 +38,7 @@ Also you can use included Vagrantfile for instant deploying of development envir
 
   ``` npm install -g less ```
 
-4. *(For production environment)* Install uglifyjs / uglifycss for static builds making
+4. **(For production environment)** Install uglifyjs / uglifycss for static builds making
 
   ``` npm install uglify uglifycss ```
 
@@ -65,7 +65,7 @@ Also you can use included Vagrantfile for instant deploying of development envir
   cp ./rdr/applicaiton/configs/example.py ./rdr/application/configs/app.py
   ```
 
-8. *(For development environment)* Devlopment environment is ready. You can start applciation dev server by command ``` cd /path/to/app && python ./run_app.py ```. Also you may need to run Celery workers or Celerybeat instance to check some functional. You can use the following commands to run celery workers or celery beat manually:
+8. **(For development environment)** Devlopment environment is ready. You can start applciation dev server by command ``` cd /path/to/app && python ./run_app.py ```. Also you may need to run Celery workers or Celerybeat instance to check some functional. You can use the following commands to run celery workers or celery beat manually:
   
   ```
   celery worker -A rdr.tasks.celery -l info -P prefork -c 16
@@ -74,4 +74,4 @@ Also you can use included Vagrantfile for instant deploying of development envir
   celery beat -A rdr.tasks.celery
   ```
 
-9. *(For production environment)* You can use *tools/uwsgi/* examples to deploy production UWSG application and *tools/supervisor* for examples of supervisor configs. It must run three process. First is application that handles user request, second is a pool of Celery workers and third is a Celerybeat instance for regular updating task.
+9. **(For production environment)** You can use *tools/uwsgi/* examples to deploy production UWSG application and *tools/supervisor* for examples of supervisor configs. It must run three process. First is application that handles user request, second is a pool of Celery workers and third is a Celerybeat instance for regular updating task.

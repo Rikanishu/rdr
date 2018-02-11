@@ -60,8 +60,12 @@ def generate_file(task_id, app_url='http://localhost:9000', file_format='PDF', l
     pdf_opts = {
         'page-size': 'Letter'
     }
-    f = NamedTemporaryFile(delete=False)
-    pdfkit.from_string(content, f.name, options=pdf_opts)
+
+    from rdr.application import app
+
+    f = open('%s/public/media/gen-pdf-task-%s.pdf' % (app.config['ROOT_PATH'], task_id,), 'w')
+    conf = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf-xvfb.sh')
+    pdfkit.from_string(content, f.name, options=pdf_opts, configuration=conf)
     task.status = OfflineReadQueueTask.STATUS_FILE_GENERATED
     task.out_file = f.name
     db.session.commit()

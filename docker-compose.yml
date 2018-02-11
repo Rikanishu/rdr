@@ -1,0 +1,64 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: "./docker/Dockerfile.web"
+    command: "sh ./docker/run-dev-uwsgi.sh"
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/app
+    depends_on:
+     - redis
+     - postgres
+    links:
+     - postgres
+     - redis
+  celery-worker:
+    build:
+      context: .
+      dockerfile: "./docker/Dockerfile.web"
+    command: "celery worker -A rdr.tasks.celery -l info -P prefork -c 16"
+    environment:
+      C_FORCE_ROOT: 1
+    volumes:
+     - .:/app
+    depends_on:
+     - redis
+     - postgres
+    links:
+     - postgres
+     - redis
+  celery-beat:
+    build:
+      context: .
+      dockerfile: "./docker/Dockerfile.web"
+    command: "celery beat -A rdr.tasks.celery"
+    volumes:
+     - .:/app
+    depends_on:
+     - celery-worker
+     - redis
+     - postgres
+    links:
+     - postgres
+     - redis
+  postgres:
+    build:
+      context: .
+      dockerfile: "./docker/Dockerfile.postgres"
+    restart: always
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+    volumes:
+      - rdr-db:/var/lib/postgresql/data
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis
+volumes:
+  rdr-db:

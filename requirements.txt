@@ -5,7 +5,7 @@ asn1crypto==0.24.0
 Babel==2.5.3
 beautifulsoup4==4.6.0
 billiard==3.3.0.23
-bleach==2.1.2
+bleach==3.1.4
 blinker==1.4
 celery==3.1.17
 cffi==1.11.4
